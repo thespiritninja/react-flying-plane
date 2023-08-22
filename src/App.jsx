@@ -2,6 +2,7 @@ import { Environment, OrbitControls, PerspectiveCamera } from '@react-three/drei
 import './App.css'
 import { SphereEnv } from './components/SphereEnv'
 import { Landscape } from './components/Landscape'
+import { Airplane } from './components/Airplane'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <PerspectiveCamera makeDefault position={[0, 10, 10]} />
       <OrbitControls target={[0, 0, 0]} />
       <Landscape />
+      <Airplane />
       <directionalLight
         castShadow
         color={"#f3d29a"}
