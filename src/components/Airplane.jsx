@@ -7,6 +7,11 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { Matrix4, Vector3 } from 'three';
 import { useFrame } from '@react-three/fiber';
+import { updatePlaneAxis } from './control';
+
+const x = new Vector3(1,0,0);
+const y = new Vector3(0,1,0);
+const z = new Vector3(0,0,1);
 export const planePosition = new Vector3(0,3,7);
 export function Airplane(props) {
   const { nodes, materials } = useGLTF('/assets/models/airplane.glb')
@@ -14,11 +19,28 @@ export function Airplane(props) {
   const helixMeshRef = useRef();
 
   useFrame(({camera})=>{
-    const matrix = new Matrix4().multiply(new Matrix4().makeTranslation(planePosition.x, planePosition.y, planePosition.z));
+    updatePlaneAxis(x,y,z,planePosition,camera);
+    const rotMatrixdets = new Matrix4().makeBasis(x,y,z);
+    //planePosition.add(new Vector3(0,0,-0.005));
+    const matrix = new Matrix4()
+      .multiply(new Matrix4().makeTranslation(planePosition.x, planePosition.y, planePosition.z))
+      .multiply(rotMatrixdets);
 
     groupRef.current.matrixAutoUpdate = false;
     groupRef.current.matrix.copy(matrix);
     groupRef.current.matrixWorldNeedsUpdate = true;
+
+    const cameraPosMatrix = new Matrix4()
+      .multiply(new Matrix4().makeTranslation(planePosition.x, planePosition.y, planePosition.z))
+      .multiply(rotMatrixdets)
+      .multiply(new Matrix4().makeRotationX(-0.2))
+      .multiply(new Matrix4().makeTranslation(0,0.015,0.3));
+
+      camera.matrixAutoUpdate = false;
+      camera.matrix.copy(cameraPosMatrix);
+      camera.matrixWorldNeedsUpdate = true;
+
+      helixMeshRef.current.rotation.z -= 1.0;
   });
 
   return (
