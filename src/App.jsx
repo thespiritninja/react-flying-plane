@@ -1,11 +1,13 @@
-import { Environment, OrbitControls, PerspectiveCamera } from '@react-three/drei'
-import './App.css'
-import { SphereEnv } from './components/SphereEnv'
-import { Landscape } from './components/Landscape'
-import { Airplane } from './components/Airplane'
-
+import {
+  Environment,
+  OrbitControls,
+  PerspectiveCamera,
+} from "@react-three/drei";
+import "./App.css";
+import { SphereEnv } from "./components/SphereEnv";
+import { Landscape } from "./components/Landscape";
+import { Airplane } from "./components/Airplane";
 function App() {
-
   return (
     <>
       <SphereEnv />
@@ -30,7 +32,7 @@ function App() {
         shadow-camera-right={6.4}
       />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

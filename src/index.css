@@ -1,6 +1,43 @@
-html, body, #root {
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+}
+.ui-div {
+  max-width: 150px;
+  max-height: 250px;
+  border: 2px solid #ffe1a9;
+  border-radius: 10px;
+  position: fixed;
+  z-index: 10;
+  bottom: 2rem;
+  left: 5%;
+  display: grid;
+  justify-content: left;
+  align-items: flex-start;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  margin: 0;
+  background-color: antiquewhite;
+}
+.button-image {
+  max-width: 50px;
+  max-height: 50px;
+}
+.pressed {
+  max-width: 40px;
+  max-height: 40px;
+}
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+p.control-heading {
+  text-align: center;
+  font-family: sans-serif;
 }
